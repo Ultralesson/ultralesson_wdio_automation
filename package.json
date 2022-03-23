@@ -1,0 +1,20 @@
+{
+  "name": "ultralessonwdio",
+  "version": "1.0.0",
+  "description": "Ultra Lesson Webdriver IO project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prateeksha Chauhan",
+  "license": "ISC",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^7.19.0",
+    "@wdio/cli": "^7.19.0",
+    "@wdio/local-runner": "^7.19.0",
+    "@wdio/mocha-framework": "^7.19.0",
+    "@wdio/selenium-standalone-service": "^7.19.0",
+    "@wdio/spec-reporter": "^7.19.0",
+    "wdio-wait-for": "^2.2.4"
+  }
+}

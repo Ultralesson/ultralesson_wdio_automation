@@ -1,0 +1,8 @@
+# Ignore metadata file
+.DS_Store
+
+# Ignore allure-results folder(need not be present in repo)
+allure-results/
+
+# Ignore node modules folder as it will be downloaded as and when needed using npm i command
+node_modules/
