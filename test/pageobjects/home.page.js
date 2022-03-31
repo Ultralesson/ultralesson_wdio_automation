@@ -22,5 +22,4 @@ class HomePage extends Page {
         return await $$(this.selectors.productName);
     }
 }
-
-module.exports = new HomePage();
+module.exports.HomePage = HomePage;

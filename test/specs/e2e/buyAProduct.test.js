@@ -1,16 +1,13 @@
 const { HomePage } = require('../../pageobjects/home.page');
 const { CustomerBuilder } = require('../../../models/customer.model');
 const { ProductBuilder } = require('../../../models/product.model');
+const { faker } = require('@faker-js/faker');
 
 describe('Product Purchase', () => {
     it('should allow new user to buy a product', async () => {
         await new HomePage().open('/'); 
         //Arrange
         let newCustomer = new CustomerBuilder()
-                        .setFirstName('Prateeksha')
-                        .setLastName('Chauhan')
-                        .setEmail('pp@gmail.com')
-                        .setPassword('283jhw')
                         .setPaymentMode('DebitCard')
                         .setCardDetails()
                         .setShippingAddress()

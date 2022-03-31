@@ -1,12 +1,13 @@
 const { AddressBuilder } = require('./address.model');
 const { CardDetailsBuilder } = require('./cardDetails.model');
+const { faker } = require('@faker-js/faker');
 
 class Customer {
-    constructor(email, password, firstName, lastName, shippingAddress, paymentMode, cardDetails, billingAddress) {
-        this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(shippingAddress, paymentMode, cardDetails, billingAddress) {
+        this.email = faker.internet.email();
+        this.password = faker.internet.password();
+        this.firstName = faker.name.firstName();
+        this.lastName = faker.name.lastName();
         this.shippingAddress = shippingAddress;
         this.paymentMode = paymentMode;
         this.cardDetails = cardDetails;
@@ -46,11 +47,11 @@ let CustomerBuilder = function () {
             this.shippingAddress = new AddressBuilder()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .setDoorNo('145/4')
-                .setStreet('Lane no 5')
-                .setCity('Bangalore')
-                .setState('Karnataka')
-                .setPincode(560038);
+                .setDoorNo(faker.address.streetPrefix())
+                .setStreet(faker.address.streetAddress())
+                .setCity(faker.address.cityName())
+                .setState(faker.address.state())
+                .setPincode(faker.address.zipCode());
             return this;
         },
         setPaymentMode: function (paymentMode) {
@@ -59,21 +60,22 @@ let CustomerBuilder = function () {
         },
         setCardDetails: function () {
             this.cardDetails = new CardDetailsBuilder()
-                .setNumber(9876123409871234)
-                .setName(firstName + lastName)
+                .setNumber(faker.finance.creditCardNumber)
+                .setName(faker.name.findName())
                 .setExpiry('09/25')
-                .setCVV(382);
+                .setCVV(faker.finance.creditCardCVV());
             return this;
         },
         setBillingAddress: function () {
             this.billingAddress = new AddressBuilder()
                 .setFirstName(firstName)
                 .setLastName(lastName)
-                .setDoorNo('145/4')
-                .setStreet('Lane no 5')
-                .setCity('Bangalore')
-                .setState('Karnataka')
-                .setPincode(560038);
+                .setDoorNo(faker.address.streetPrefix())
+                .setStreet(faker.address.streetAddress())
+                .setCity(faker.address.cityName())
+                .setState(faker.address.state())
+                .setPincode(faker.address.zipCode());
+        return this;
             return this;
         },
         build: function () {
