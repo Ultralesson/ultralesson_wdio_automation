@@ -27,6 +27,19 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
+    suites: {
+        sanity: [
+            './test/specs/e2e/buyAProduct.test.js',
+            './test/specs/search.test.js'
+        ],
+        productPurchase: [
+            './test/specs/e2e/buyAProduct.test.js'
+        ]
+        ,
+        search: [
+            './test/specs/search.test.js'
+        ]
+    },
     //
     // ============
     // Capabilities
