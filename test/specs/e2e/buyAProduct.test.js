@@ -5,7 +5,8 @@ const { faker } = require('@faker-js/faker');
 
 describe('Product Purchase', () => {
     it('should allow new user to buy a product', async () => {
-        await new HomePage().open('/'); 
+        const homePage = new HomePage();
+        await homePage.open('/'); 
         //Arrange
         let newCustomer = new CustomerBuilder()
                         .setPaymentMode('DebitCard')
@@ -24,8 +25,8 @@ describe('Product Purchase', () => {
                             .setQuantity();
 
         //Act
-        await HomePage.search(productToBuy.getSearchKeyword())
-        let productDetailsPage = await HomePage.selectProduct(productToBuy.name());
+        await homePage.search(productToBuy.getSearchKeyword())
+        let productDetailsPage = await homePage.selectProduct(productToBuy.name());
 
         
         await productDetailsPage.selectSize(productToBuy.size());

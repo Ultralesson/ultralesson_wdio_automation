@@ -1,5 +1,4 @@
-const LauncherPage = require('../pageobjects/launcher.page');
-const HomePage = require('../pageobjects/home.page');
+const { HomePage } = require('../pageobjects/home.page');
 
 describe('Search tests', () => {
     it('should show relevant results on search', async() => {
@@ -7,11 +6,12 @@ describe('Search tests', () => {
         let searchItem = 'Jeans';
         let searchKey = 'Jean';
         //Since baseURL is already mentioned in wdio.conf.js, we will only use / to open the url
-        await LauncherPage.open('/');
+        const homePage = new HomePage();
+        await homePage.open('/');
   
         //Act
-        await HomePage.search(searchItem);
-        let searchItems = await HomePage.getSearchItems();
+        await homePage.search(searchItem);
+        let searchItems = await homePage.getSearchItems();
         
         //Assert
         expect(searchItems.length).toBe(4);
