@@ -33,4 +33,4 @@ jobs:
       if: ${{ always() }}
       with:
         name: web_test
-        path: allure-reports/
+        path: allure-report
