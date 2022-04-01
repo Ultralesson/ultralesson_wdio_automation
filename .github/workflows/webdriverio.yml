@@ -6,13 +6,11 @@ name: WebDriverIO CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   web_test:
-
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
@@ -22,12 +20,15 @@ jobs:
         cache: 'npm'
     - name: setup chrome
       uses: browser-actions/setup-chrome@latest
-    - run: npm ci
     - name: Run sanity test on local
-    - run: npm test:local -- --suite sanity
+      run: |
+        npm ci
+        npm test:local -- --suite sanity
+    - name: Generate reports
+      run: npx run allure generate --clean allure-results
     - name: Upload API Artifacts
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
         name: web_test
-        path: build/web-reports
+        path: allure-reports
