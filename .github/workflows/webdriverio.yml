@@ -9,7 +9,7 @@ on:
 
 jobs:
   web_test:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -18,13 +18,17 @@ jobs:
       with:
         node-version: 17.x
         cache: 'npm'
+    - name: setup chrome
+      uses: browser-actions/setup-chrome@latest
+      with:
+        chrome-version: stable
     - name: Run sanity test on local
       run: |
         npm ci
         npm run test:local -- --suite sanity
     - name: Generate reports
-      run: npx run allure generate --clean allure-results
-    - name: Upload API Artifacts
+      run: npx allure generate --clean allure-results
+    - name: Upload Artifacts
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
