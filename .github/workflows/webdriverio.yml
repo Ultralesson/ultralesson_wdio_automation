@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: 17.x
         cache: 'npm'
+    - name: setup chrome
+      uses: browser-actions/setup-chrome@latest
     - name: Run sanity test on local
       run: |
         npm ci
